@@ -48,3 +48,42 @@ Thumbs.db
 *.mov
 *.wmv
 
+# Ignore some files
+# Sam Macharia
+Analysis/DOE/*/ # Ignore all subfolders inside DOE but not files inside DOE
+Analysis/ContactStates/*/
+*.csv # ignore all .csv files
+*.txt
+!notes.txt # do not ignore this particular file
+!param_set.txt
+!avi2mp4.txt
+!mergeAVI.txt
+!samba_setup.txt
+!MainCodeVariableNames.txt
+Analysis/AssayTimeSteps/*/
+Analysis/ATP_Speed/*/
+Analysis/BindingMotors/*/
+Analysis/Changing_k_dt/*/
+Analysis/ContactStates/*/
+Analysis/DifferenceInFiles/*/
+Analysis/DOE/*/
+Analysis/dt_Speed/*/
+Analysis/Force_Rate/*/
+Analysis/FxnPlot/*/
+Analysis/MotorDensity_Speed/*/
+Analysis/MotorRatio_Speed/*/
+Analysis/NewLifetime/*/
+Analysis/PersistenceLength/*/
+Analysis/PullingAF/*/
+Analysis/Spring/*/
+Analysis/TangentForce/*/
+Analysis/Trajectories/*/
+Analysis/AssayTsSnapshot/*/
+Analysis/Correlation/*/
+*.png
+*.html
+*.vtk
+*.svg
+*.pdf
+*.emf
+*.ipynb_checkpoints
