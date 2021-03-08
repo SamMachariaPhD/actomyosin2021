@@ -1,0 +1,16 @@
+0.70,13,2000,3000,27,5,1.0E-7
+0.80,13,2000,3000,27,5,1.0E-7
+0.90,13,2000,3000,27,5,1.0E-7
+0.92,13,2000,3000,27,5,1.0E-7
+0.94,13,2000,3000,27,5,1.0E-7
+0.96,13,2000,3000,27,5,1.0E-7
+
+#---------------------------------DO NOT DELETE THIS---------------------------------------#
+#   Please set (ABOVE) the 6 parameters for all simulations (each line)                    #
+#   Enter: species_ratio,beads_number,ATP_value,MD_value,seed,simul_tym_sec,Dt e.g.:       #
+#   0.9,13,2000,3000,273,3,5.0e-7                                                          #
+#   Do not skip a line above!                                                              #
+#   Separate parameters with ',' only                                                      #
+#   Each line rep. 1 simulation parameters                                                 #
+#   Regards, Sam.                                                                          #
+#------------------------------------------------------------------------------------------#
