@@ -65,13 +65,15 @@ For slightly faster and safe runs free from network breakdowns,
 > Once a.out is produced and the simulation seems to run as expected, 
 > Stop the simulation, copy and rename a.out as you wish, say, R07ATP2000.out
 > $ ssh 10.226.27.26 -l nitta NOT $ ssh -X 10.226.27.26 -l nitta (Do not use the -X option)
-> Run the following command and close the terminal
+> Run the following command 
 > $ ulimit -s unlimited; ./R07ATP2000.out &
 > "&" will make sure that the program is running in the background of that computer
+> After running the desired program(s), exit using $exit
 > Open a different terminal and run $ top
 > Make sure you can see the program running
 > After the program is complete, run the appropriate analysis.py scripts
 > You may run as many as programs as you can depending on the available memory displayed on $ top (<25%)
+> To stop/ kill a program, check the "PID" number of the process from $top and then $kill xxxxx, where xxxxx is the PID no.
 
 
 
