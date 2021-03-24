@@ -56,7 +56,7 @@ REAL(KIND = DP), PARAMETER :: 	pi = 3.14159265358979_DP, &
 
 !---Track Surface-----------------------------------------------------
 				HorizontalLength = DBLE(NumBeads-1)*BondLength + 1.0_DP, &
-				VerticalLength = 0.5*DBLE(NumBeads-1)*BondLength + 1.0_DP
+				VerticalLength = 0.25*DBLE(NumBeads-1)*BondLength + 1.0_DP
 
 INTEGER, PARAMETER ::		OutPutDiv2 = NINT(0.0005/dt) !0.0005/dt -- output timestep for MotorStates output = 0.0005
 

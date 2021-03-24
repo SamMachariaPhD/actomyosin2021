@@ -82,7 +82,7 @@ while simulation_runs > 0:
     print("Start datetime: ", file=open('pyout.txt','a'))
     print(datetime.datetime.now().strftime("%H:%M %d-%m-%Y"), file=open('pyout.txt','a'))
     tic=time.time()
-    subprocess.call("ulimit -s unlimited;./a.out", shell=True)
+    #subprocess.call("ulimit -s unlimited;./a.out", shell=True) # check method 2 in notes.md
     toc=time.time()
     tym=toc-tic
     print("\nTotal time in sec: ", file=open('pyout.txt','a'))
@@ -104,44 +104,44 @@ while simulation_runs > 0:
 print("\n=> All the %s simulations are successfully completed.\nDone!\n" %simulations)
 
 
-for dirr in dir_arr:
-    os.chdir(dir_name+'/'+dirr)
-    #==============================================
-    try:
-        os.system('python3 analysis.py')
-    except Exception as e:
-        print(datetime.datetime.now().strftime("%H:%M %d-%m-%Y"), file=open('pyout.txt','a'))
-        print("\nANALYSIS ERROR: ", file=open('pyout.txt','a'))
-        print(e, file=open('pyout.txt','a'))
-        print("Sorry, 'analysis.py' has an error.")
-        pass
-    #==============================================
-    try:
-        os.system('pvpython film1.py')
-    except Exception as e:
-        print(datetime.datetime.now().strftime("%H:%M %d-%m-%Y"), file=open('pyout.txt','a'))
-        print("\nFILM1 ERROR: ", file=open('pyout.txt','a'))
-        print(e, file=open('pyout.txt','a'))
-        print("Sorry, 'film1.py' has an error.")
-        pass
-    #==============================================
-    try:
-        os.system('pvpython film2.py')
-    except Exception as e:
-        print(datetime.datetime.now().strftime("%H:%M %d-%m-%Y"), file=open('pyout.txt','a'))
-        print("\nFILM2 ERROR: ", file=open('pyout.txt','a'))
-        print(e, file=open('pyout.txt','a'))
-        print("Sorry, 'film2.py' has an error.")
-        pass
-    #==============================================
-    try:
-        os.system('python3 tar.py')
-    except Exception as e:
-        print(datetime.datetime.now().strftime("%H:%M %d-%m-%Y"), file=open('pyout.txt','a'))
-        print("\nTAR ERROR: ", file=open('pyout.txt','a'))
-        print(e, file=open('pyout.txt','a'))
-        print("Sorry, 'tar.py' has an error.")
-        pass
-    #==============================================
-    os.chdir(current_path)
+# for dirr in dir_arr:
+#     os.chdir(dir_name+'/'+dirr)
+#     #==============================================
+#     try:
+#         os.system('python3 analysis.py')
+#     except Exception as e:
+#         print(datetime.datetime.now().strftime("%H:%M %d-%m-%Y"), file=open('pyout.txt','a'))
+#         print("\nANALYSIS ERROR: ", file=open('pyout.txt','a'))
+#         print(e, file=open('pyout.txt','a'))
+#         print("Sorry, 'analysis.py' has an error.")
+#         pass
+#     #==============================================
+#     try:
+#         os.system('pvpython film1.py')
+#     except Exception as e:
+#         print(datetime.datetime.now().strftime("%H:%M %d-%m-%Y"), file=open('pyout.txt','a'))
+#         print("\nFILM1 ERROR: ", file=open('pyout.txt','a'))
+#         print(e, file=open('pyout.txt','a'))
+#         print("Sorry, 'film1.py' has an error.")
+#         pass
+#     #==============================================
+#     try:
+#         os.system('pvpython film2.py')
+#     except Exception as e:
+#         print(datetime.datetime.now().strftime("%H:%M %d-%m-%Y"), file=open('pyout.txt','a'))
+#         print("\nFILM2 ERROR: ", file=open('pyout.txt','a'))
+#         print(e, file=open('pyout.txt','a'))
+#         print("Sorry, 'film2.py' has an error.")
+#         pass
+#     #==============================================
+#     try:
+#         os.system('python3 tar.py')
+#     except Exception as e:
+#         print(datetime.datetime.now().strftime("%H:%M %d-%m-%Y"), file=open('pyout.txt','a'))
+#         print("\nTAR ERROR: ", file=open('pyout.txt','a'))
+#         print(e, file=open('pyout.txt','a'))
+#         print("Sorry, 'tar.py' has an error.")
+#         pass
+#     #==============================================
+#     os.chdir(current_path)
 

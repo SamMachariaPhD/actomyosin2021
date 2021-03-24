@@ -47,7 +47,7 @@ REAL(KIND = DP), PARAMETER :: 	pi = 3.14159265358979_DP, &
 				F_Motor_Detach1 = 9.2_DP,&
 				F_Motor_Detach2 = 9.2_DP,&
 				CaptureRadius=0.020_DP, &
-				Type1Ratio = 0.92_DP, &
+				Type1Ratio = 1.00_DP, &
 
 !---External Force----------------------------------------------------
 				ExtForceDensity0 = -0.0_DP, & !pN/um

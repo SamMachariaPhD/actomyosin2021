@@ -157,7 +157,7 @@ MODULE CHANNEL_TRACK_CONFINEMENT
 			TempYCoordinate = 0.5_DP*ChannelWidth
 		END IF
 
-		IF (TempZCoordinate < -0.5_DP*ChannelWidth) THEN
+		IF (TempYCoordinate < -0.5_DP*ChannelWidth) THEN
 			ConfinementStatus = .FALSE.
 			TempYCoordinate = -0.5_DP*ChannelWidth
 		END IF

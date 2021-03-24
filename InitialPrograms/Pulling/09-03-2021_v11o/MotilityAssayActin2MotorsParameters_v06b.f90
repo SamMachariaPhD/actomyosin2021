@@ -57,7 +57,7 @@ REAL(KIND = DP), PARAMETER :: 	pi = 3.14159265358979_DP, &
 !---Track Surface-----------------------------------------------------
 				ChannelWidth = 0.2_DP, &
 				HorizontalLength = DBLE(NumBeads-1)*BondLength + 1.0_DP, &
-!				VerticalLength = 0.5_DP*DBLE(NumBeads-1)*BondLength + 1.0_DP, &
+!				VerticalLength = 0.25_DP*DBLE(NumBeads-1)*BondLength + 1.0_DP, &
 				VerticalLength = 2.5_DP*ChannelWidth
 
 INTEGER, PARAMETER ::		OutPutDiv2=0.0005/dt
