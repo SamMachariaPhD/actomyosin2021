@@ -31,8 +31,8 @@ REAL(KIND = DP), PARAMETER :: 	pi = 3.14159265358979_DP, &
 				EI=0.073_DP, &		!EI = Lp(100um Takatsuki 2014 AF bundle estimate)*kBT !was 0.073				!Actin Filament (Gittes et al., JCB 1993)
 				DiameterAF = 0.006_DP, &
 				Motor_Density = 3000.0_DP, &
-				Motor_Density_Upper = 3000.0_DP, &
-				Motor_Density_Lower = 1000.0_DP, &
+				Motor_Density_Upper = 1000.0_DP, &
+				Motor_Density_Lower = 3000.0_DP, &
 				k = 300.0_DP,& 
 !
 				Stepsize = 1.0E-2_DP, & 			! was 1.0E-2
