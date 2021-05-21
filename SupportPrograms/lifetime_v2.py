@@ -9,7 +9,7 @@ from ast import literal_eval
 import glob
 
 #==============================================================
-files = glob.glob('MotorStates_Ts0.**.txt')
+files = glob.glob('MStates_Ts0.**.txt')
 files = sorted(files, key=lambda x:x[-20:])
 
 #==============================================================
@@ -42,10 +42,10 @@ for r in files:
     ms_def.rename(columns={'size':'lyf'}, inplace=True)
    
     #==============================================================
-    ms_act.to_csv(r[12:-4]+'act_with_lyf.csv', header=False, index=False, float_format='%.6f') # x,y,life
+    ms_act.to_csv(r[8:-4]+'act_with_lyf.csv', header=False, index=False, float_format='%.6f') # x,y,life
     #-------------------------------------------------------------- 
     try: 
-        ms_def.to_csv(r[12:-4]+'def_with_lyf.csv', header=False, index=False, float_format='%.6f') # x,y,life
+        ms_def.to_csv(r[8:-4]+'def_with_lyf.csv', header=False, index=False, float_format='%.6f') # x,y,life
     except:
         print('Saving m2 passed: '+r) # No defective motors in R =1.0
     
