@@ -1,1 +1,2 @@
-ffmpeg -i DefectiveActiveAggressiveTs0_50.avi -acodec libfaac -b:a 128k -vcodec mpeg4 -b:v 1200k -flags +aic+mv4 R05_000_050.mp4
+ffmpeg -i movie.avi -acodec libfaac -b:a 128k -vcodec mpeg4 -b:v 1200k -flags +aic+mv4 movie.mp4
+ffmpeg -i movie.ogv -acodec libfaac -b:a 128k -vcodec mpeg4 -b:v 1200k -flags +aic+mv4 movie.mp4
