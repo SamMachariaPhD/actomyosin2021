@@ -9,7 +9,7 @@ from ast import literal_eval
 import glob
 
 #==============================================================
-files = glob.glob('MotorStates_Ts0.**.txt')
+files = glob.glob('MStates_Ts0.**.txt')
 files = sorted(files, key=lambda x:x[-20:])
 
 #==============================================================
@@ -32,24 +32,20 @@ for r in files:
     #==============================================================
     # Lifetime metric: during one lifetime, a binding motor, ( 𝑥𝑚,𝑦𝑚 ) must retain index ' 𝑖𝑚 ', 
     # and also contact state, ' 𝑐 ' in the next immediate time step ' 𝑡𝑠 '.
-    #act_xy = np.around( ms_act[['im','c','xm','ym']], 6).values.tolist()
-    #def_xy = np.around( ms_def[['im','c','xm','ym']], 6).values.tolist()
 
     ms_act = ms_act.drop(['ts','mt','xc','yc','zc','zm','fx','fy','fz'],1) # remove the unused columns
     ms_act = ms_act.groupby(ms_act.columns.tolist(), as_index=False).size() # count duplicated rows
     ms_act.rename(columns={'size':'lyf'}, inplace=True)
 
     ms_def = ms_def.drop(['ts','mt','xc','yc','zc','zm','fx','fy','fz'],1)
-    ms_def = ms_def.groupby(ms_def.columns.tolist(), as_index=False).size()
+    ms_def = ms_def.groupby(ms_def.columns.tolist(), as_index=False).size(); print(ms_act)
     ms_def.rename(columns={'size':'lyf'}, inplace=True)
-
-    #==============================================================
    
     #==============================================================
-    ms_act.to_csv(r[12:-4]+'act_with_lyf.csv', header=False, index=False, float_format='%.6f') # x,y,life
+    ms_act.to_csv(r[8:-4]+'act_with_lyf.csv', header=False, index=False, float_format='%.6f') # x,y,life
     #-------------------------------------------------------------- 
     try: 
-        ms_def.to_csv(r[12:-4]+'def_with_lyf.csv', header=False, index=False, float_format='%.6f') # x,y,life
+        ms_def.to_csv(r[8:-4]+'def_with_lyf.csv', header=False, index=False, float_format='%.6f') # x,y,life
     except:
         print('Saving m2 passed: '+r) # No defective motors in R =1.0
     
