@@ -1,2 +1,7 @@
 ffmpeg -i movie.avi -acodec libfaac -b:a 128k -vcodec mpeg4 -b:v 1200k -flags +aic+mv4 movie.mp4
 ffmpeg -i movie.ogv -acodec libfaac -b:a 128k -vcodec mpeg4 -b:v 1200k -flags +aic+mv4 movie.mp4
+
+ffmpeg -i input.ogv \
+       -c:v libx264 -preset veryslow -crf 22 \
+       -c:a libmp3lame -qscale:a 2 -ac 2 -ar 44100 \
+       output.mp4
