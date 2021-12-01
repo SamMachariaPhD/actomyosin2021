@@ -15,7 +15,8 @@ cm = 1/2.54
 #====================================================================
 
 #Import trajectory data
-conff0 = glob.glob('data/ConfT5F0S**.txt'); f = 0.0
+#conff0 = glob.glob('data/ConfT5F0S**.txt'); f = 0.0
+conff0 = glob.glob('data/ConfT5F+1S**.txt'); f = +1.0
 conff0 = sorted(conff0)
 print("Imported data list:"); print(conff0)
 #====================================================================
@@ -23,7 +24,7 @@ print("Imported data list:"); print(conff0)
 # Required parameters
 beads = 13 # Filament beads (actin)
 #jmp = 10 ; dt = 'dt0'; Dt = 0.1 # Adjust delta t
-jmp = 20 ; dt = 'dt2'; Dt = 0.2
+jmp = 50 ; dt = 'dt2'; Dt = 0.5
 #jmp = 30 ; dt = 'dt0'; Dt = 3 # For microtubule
 #v00 = 0.8 # Filament speed
 v0 = 7.0; #v_1 = 7.7; v1 = 7.8
@@ -178,7 +179,7 @@ perr = np.sqrt(np.diag(covs[0])) # Error on params
 # Plot all the persistence length changes and the mean 
 # Plot the persistence length with fitting, showing the Lp
 fig, ax = plt.subplots(1,2, figsize=(20*cm,10*cm))
-plt.subplots_adjust(wspace=0.3)
+plt.subplots_adjust(wspace=0.35)
 
 for i in range(len(conff0)): # All trajectory plots
     ax[0].plot(s0_m,dfdsm0[i], marker='o', markersize=3, ls='--', lw=1, \
@@ -186,7 +187,7 @@ for i in range(len(conff0)): # All trajectory plots
    
 ax[0].plot(s0_m,dsm0_m, marker='o', markersize=3, ls='--', lw=1, \
 color='red', markerfacecolor='lime', label='Average') # Mean plot
-ax[0].set_yticks(np.arange(-1,1.1,0.25)) # For actin
+ax[0].set_yticks(np.arange(0.80,1.01,0.04)) # For actin
 ax[0].minorticks_on()
 ax[0].tick_params('both', direction='in', top=True, right=True, \
 length=8, which='major')
@@ -198,7 +199,7 @@ ax[0].set_title('F = %.2f pN | $\Delta t = %.2f\ sec$'%(f,Dt), fontsize=14)
 ax[1].plot(x,y, marker='o', c='r', ls='--', lw=1, markerfacecolor='lime')
 ax[1].plot(x, func(x,*params), label=r'Lp = %.4f $\pm$ %.4f $\mu m$'\
 %(params[0],perr)) # curve fit
-ax[1].set_yticks(np.arange(-3,0.1,0.5))
+ax[1].set_yticks(np.arange(-0.1,0.001,0.02))
 ax[1].minorticks_on()
 ax[1].tick_params('both', direction='in', top=True, right=True, \
 length=8, which='major')

@@ -45,7 +45,7 @@ for i in conff0:
 #====================================================================
 
 # Plot sample trajectories
-fig, ax = plt.subplots(1,3, figsize=(30*cm, 10*cm), sharex = True, \
+fig, ax = plt.subplots(1,5, figsize=(50*cm, 10*cm), sharex = True, \
 sharey = True)
 
 ax[0].plot(xy0[0]['x'], xy0[0]['y'], color='red', label='Original')
@@ -76,6 +76,24 @@ right=True, which='major')
 ax[2].tick_params('both', direction='in', length=4, top=True, \
 right=True, which='minor')
 ax[2].set_xlabel('X($\mu m$)')
+
+ax[3].plot(xy0[3]['x'], xy0[3]['y'], color='red')
+ax[3].plot(conf0[3]['x'], conf0[3]['y'], color='blue')
+ax[3].minorticks_on()
+ax[3].tick_params('both', direction='in', length=8, top=True, \
+right=True, which='major')
+ax[3].tick_params('both', direction='in', length=4, top=True, \
+right=True, which='minor')
+ax[3].set_xlabel('X($\mu m$)')
+
+ax[4].plot(xy0[4]['x'], xy0[4]['y'], color='red')
+ax[4].plot(conf0[4]['x'], conf0[4]['y'], color='blue')
+ax[4].minorticks_on()
+ax[4].tick_params('both', direction='in', length=8, top=True, \
+right=True, which='major')
+ax[4].tick_params('both', direction='in', length=4, top=True, \
+right=True, which='minor')
+ax[4].set_xlabel('X($\mu m$)')
 
 print("Trajectories: ")
 plt.savefig('fig/Traj-'+str(round(f,2))+'-Dt'+str(round(Dt,2))\
@@ -142,29 +160,6 @@ s0_m = dfs0.mean(axis=1)*v0*Dt
 dsm0_m = dfdsm0.mean(axis=1)
 #====================================================================
 
-# Plot all the persistence length changes and the mean 
-fig, ax = plt.subplots(1,1, figsize=(10*cm,10*cm))
-
-for i in range(len(conff0)): # All trajectory plots
-    ax.plot(s0_m,dfdsm0[i], marker='o', markersize=3, ls='--', lw=1, \
-    color='lightblue', markerfacecolor='lime', label='_nolegend_')
-    
-ax.plot(s0_m,dsm0_m, marker='o', markersize=3, ls='--', lw=1, \
-color='red', markerfacecolor='lime', label='Average') # Mean plot
-ax.minorticks_on()
-ax.tick_params('both', direction='in', top=True, right=True, \
-length=8, which='major')
-ax.tick_params('both', direction='in', length=4, which='minor')
-ax.set_xlabel(r'$Distance\ (S \cdot V \cdot \Delta t)$', fontsize=14)
-ax.set_ylabel(r'$\langle cos \Delta \theta (S) \rangle$', fontsize=14)
-ax.set_title('F = %.2f pN | $\Delta t = %.2f\ sec.$'%(f,Dt), fontsize=14)
-
-ax.legend()
-plt.savefig('fig/LpAllF-'+str(round(f,2))+'-Dt'+str(round(Dt,2))\
-+'.pdf', format='pdf', bbox_inches='tight')
-plt.show()
-#====================================================================
-
 # Calculate the log of y and then do fitting
 x = s0_m 
 y = dsm0_m 
@@ -176,24 +171,44 @@ y = np.array(df_xy['y'])
 
 def func(x,Lp): # fitting function
     return 1*(-x/(2*Lp))
-popt, pcov = curve_fit(func, x, y)
+params, covs = curve_fit(func, x, y)
+perr = np.sqrt(np.diag(covs[0])) # Error on params
 #====================================================================
 
+# Plot all the persistence length changes and the mean 
 # Plot the persistence length with fitting, showing the Lp
-fig, ax = plt.subplots(1,1, figsize=(10*cm,10*cm), sharey=True)
+fig, ax = plt.subplots(1,2, figsize=(20*cm,10*cm))
+plt.subplots_adjust(wspace=0.3)
 
-ax.plot(x,y, marker='o', c='r', ls='--', lw=1, markerfacecolor='lime')
-ax.plot(x, func(x,*popt), label='Lp = %s'%np.round(popt[0],6))
-ax.minorticks_on()
-ax.tick_params('both', direction='in', top=True, right=True, \
+for i in range(len(conff0)): # All trajectory plots
+    ax[0].plot(s0_m,dfdsm0[i], marker='o', markersize=3, ls='--', lw=1, \
+    color='lightblue', markerfacecolor='lime', label='_nolegend_')
+   
+ax[0].plot(s0_m,dsm0_m, marker='o', markersize=3, ls='--', lw=1, \
+color='red', markerfacecolor='lime', label='Average') # Mean plot
+ax[0].set_yticks(np.arange(-1,1.1,0.25)) # For actin
+ax[0].minorticks_on()
+ax[0].tick_params('both', direction='in', top=True, right=True, \
 length=8, which='major')
-ax.tick_params('both', direction='in', length=4, which='minor')
-ax.set_xlabel(r'$Distance\ (S \cdot V \cdot \Delta t)$', fontsize=14)
-ax.set_ylabel(r'$log \langle cos \Delta \theta (S) \rangle$', \
-fontsize=14)
-ax.set_title('F = %.2f pN | $\Delta t = %.2f\ sec.$'%(f,Dt), fontsize=14)
+ax[0].tick_params('both', direction='in', length=4, which='minor')
+ax[0].set_xlabel(r'$(S \cdot V \cdot \Delta t)\ \mu m$', fontsize=14)
+ax[0].set_ylabel(r'$\langle cos \Delta \theta (S) \rangle$', fontsize=14)
+ax[0].set_title('F = %.2f pN | $\Delta t = %.2f\ sec$'%(f,Dt), fontsize=14)
 
-ax.legend()
+ax[1].plot(x,y, marker='o', c='r', ls='--', lw=1, markerfacecolor='lime')
+ax[1].plot(x, func(x,*params), label=r'Lp = %.4f $\pm$ %.4f $\mu m$'\
+%(params[0],perr)) # curve fit
+ax[1].set_yticks(np.arange(-3,0.1,0.5))
+ax[1].minorticks_on()
+ax[1].tick_params('both', direction='in', top=True, right=True, \
+length=8, which='major')
+ax[1].tick_params('both', direction='in', length=4, which='minor')
+ax[1].set_xlabel(r'$(S \cdot V \cdot \Delta t)\ \mu m$', fontsize=14)
+ax[1].set_ylabel(r'$log \langle cos \Delta \theta (S) \rangle$', \
+fontsize=14)
+ax[1].set_title('F = %.2f pN | $\Delta t = %.2f\ sec$'%(f,Dt), fontsize=14)
+
+ax[1].legend()
 plt.savefig('fig/LpF-'+str(round(f,2))+'-Dt'+str(round(Dt,2))\
 +'.pdf', format='pdf', bbox_inches='tight')
 plt.show()
