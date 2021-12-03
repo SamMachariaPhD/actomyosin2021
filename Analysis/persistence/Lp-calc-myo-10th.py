@@ -181,7 +181,7 @@ ax[0].tick_params('both', direction='in', top=True, right=True, \
 length=8, which='major')
 ax[0].tick_params('both', direction='in', length=4, which='minor')
 ax[0].set_xlabel(r'$(S \cdot V \cdot \Delta t)\ \mu m$', fontsize=14)
-ax[0].set_ylabel(r'$\langle cos \Delta \theta (S) \rangle$', fontsize=14)
+ax[0].set_ylabel(r'$\langle cos (\Delta \theta) \rangle_s$', fontsize=14)
 ax[0].set_title('F = %.2f pN | $\Delta t = %.2f\ sec$'%(f,Dt), fontsize=14)
 
 #---------------------------------------------------------
@@ -215,7 +215,7 @@ ax[1].tick_params('both', direction='in', top=True, right=True, \
 length=8, which='major')
 ax[1].tick_params('both', direction='in', length=4, which='minor')
 ax[1].set_xlabel(r'$(S \cdot V \cdot \Delta t)\ \mu m$', fontsize=14)
-ax[1].set_ylabel(r'$log \langle cos \Delta \theta (S) \rangle$', \
+ax[1].set_ylabel(r'$log \langle cos (\Delta \theta) \rangle_s$', \
 fontsize=14)
 ax[1].set_title('F = %.2f pN | $\Delta t = %.2f\ sec$'%(f,Dt), fontsize=14)
 
