@@ -1,3 +1,5 @@
+# In a Linux terminal, do the following:
+
 ffmpeg -i movie.avi -acodec libfaac -b:a 128k -vcodec mpeg4 -b:v 1200k -flags +aic+mv4 movie.mp4
 ffmpeg -i movie.ogv -acodec libfaac -b:a 128k -vcodec mpeg4 -b:v 1200k -flags +aic+mv4 movie.mp4
 

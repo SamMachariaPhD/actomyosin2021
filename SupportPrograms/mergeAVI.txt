@@ -1,1 +1,3 @@
+# In a Linux terminal, do the following:
+
 avimerge -o big.avi -i my_file1.avi my_file2.avi my_file3.avi
